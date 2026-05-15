@@ -121,6 +121,42 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      {/* POWERED BY */}
+      <div className="mt-5 flex justify-end">
+        <div className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 transition-all duration-300 hover:bg-white/10">
+
+          <a
+            href="https://fabulousmedia.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-90 hover:opacity-100 transition-opacity"
+            aria-label="FabulousMedia"
+          >
+            <img
+              src="/fabulousmedia.webp"
+              alt="FabulousMedia"
+              className="h-3 w-auto"
+            />
+          </a>
+
+          <span className="h-3 w-px bg-white/30" />
+
+          <a
+            href="https://gocommercially.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-200 hover:opacity-200 transition-opacity"
+            aria-label="GoCommercially"
+          >
+            <img
+              src="/gocommercially.webp"
+              alt="GoCommercially"
+              className="h-3 w-auto"
+            />
+          </a>
+
+        </div>
+      </div>
     </footer>
   );
 }
