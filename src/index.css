@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-textMain antialiased font-sans overflow-x-hidden;
+    cursor: none;
+  }
+  a, button, [role="button"], .cursor-pointer {
+    cursor: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-textMain;
+  }
+}
+
+@layer components {
+  /* ── Brand Gradient Button ── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.30);
+  }
+  .btn-primary:hover {
+    @apply scale-[1.03];
+    box-shadow: 0 8px 40px rgba(37, 99, 235, 0.40);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold bg-white border-2 border-gray-200 transition-all duration-300;
+    color: #0F172A;
+  }
+  .btn-secondary:hover {
+    border-color: #2563EB;
+    color: #2563EB;
+    @apply scale-[1.02];
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+  }
+
+  /* ── Premium Card ── */
+  .premium-card {
+    @apply bg-white border border-gray-100 rounded-2xl relative overflow-hidden transition-all duration-500;
+    box-shadow: 0 2px 16px rgba(15, 23, 42, 0.06);
+  }
+  .premium-card:hover {
+    @apply -translate-y-2;
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.14);
+    border-color: rgba(37, 99, 235, 0.20);
+  }
+  .premium-card.orange:hover {
+    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.16);
+    border-color: rgba(249, 115, 22, 0.20);
+  }
+
+  /* ── Section Label / Eyebrow ── */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold tracking-widest uppercase;
+    background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(249,115,22,0.08) 100%);
+    color: #2563EB;
+    border: 1px solid rgba(37,99,235,0.15);
+  }
+
+  /* ── Brand Gradient Text ── */
+  .text-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
+  }
+  /* Extra scale utilities */
+  .scale-115 { transform: scale(1.15); }
+  .scale-120 { transform: scale(1.20); }
+  .group:hover .group-hover\:scale-115 { transform: scale(1.15); }
+  .group:hover .group-hover\:scale-120 { transform: scale(1.20); }
+  .duration-400 { transition-duration: 400ms; }
+  .duration-600 { transition-duration: 600ms; }
+}
+
+/* ── Floating animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+  50%       { transform: translateY(-18px) rotate(calc(var(--rotation, 0deg) + 1.5deg)); }
+}
+.animate-float       { animation: float 6s   ease-in-out infinite; }
+.animate-float-delay { animation: float 6s   ease-in-out 1.5s infinite; }
+.animate-float-slow  { animation: float 8s   ease-in-out 0.7s infinite; }
+
+/* ── Shimmer for hero badge ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #2563EB 0%, #F97316 50%, #2563EB 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Scrollbar (light theme) ── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ── Lenis ── */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* ── Section alternating backgrounds ── */
+.section-white  { @apply bg-white; }
+.section-slate  { background: #F8FAFC; }
