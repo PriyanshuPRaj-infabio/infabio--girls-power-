@@ -22,83 +22,93 @@ const badges = [
 export default function FinalCTA() {
   return (
     <section
-      className="py-28 relative overflow-hidden"
+      className="py-32 relative overflow-hidden bg-transparent"
       id="contact"
-      style={{ background: 'linear-gradient(135deg, #EFF6FF 0%, #FFF7ED 100%)' }}
     >
-      <div className="absolute -top-20 left-0 w-[400px] h-[400px] rounded-full bg-blue-200/30 blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-orange-200/30 blur-[100px] pointer-events-none" />
-
-      {/* Animated grid lines */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
+      {/* Cinematic portal gradients behind CTA */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-r from-indigo-950/20 to-pink-950/15 blur-[160px] pointer-events-none z-0" />
+      
+      {/* Animated micro-grid line texture */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.05] z-0"
         style={{
-          backgroundImage: 'linear-gradient(#2563EB 1px, transparent 1px), linear-gradient(90deg, #2563EB 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-4xl mx-auto space-y-8"
         >
-          <span className="eyebrow mb-6 inline-block">Ready to Start?</span>
-          <h2 className="text-4xl md:text-7xl font-display font-black text-textMain leading-tight mt-4 mb-8">
-            Ready to grow{' '}
-            <span className="text-brand">smarter?</span>
+          <span className="eyebrow inline-block">Ready to Start?</span>
+          
+          <h2 className="text-5xl md:text-8xl font-display font-light text-white leading-[1.05] tracking-tight">
+            Ready to grow <br />
+            <span className="text-transparent bg-clip-text bg-brand-gradient pr-4 italic font-normal">
+              smarter?
+            </span>
           </h2>
-          <p className="text-xl md:text-2xl text-textBody font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
+          
+          <p className="text-lg md:text-xl text-slate-300 font-sans font-light leading-relaxed max-w-xl mx-auto">
             Let's build marketing systems that save money and drive real business growth.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-5 mb-16">
+          <div className="flex flex-wrap justify-center gap-6 pt-6">
             <motion.a
               href="mailto:hello@infabio.com"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="btn-primary text-lg px-10 py-5 shadow-2xl"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary text-sm px-10 py-5 shadow-[0_15px_30px_rgba(99,102,241,0.25)] rounded-xl font-bold uppercase tracking-wider"
             >
               Book a Free Consultation →
             </motion.a>
             <motion.a
               href="#services"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              className="btn-secondary text-lg px-10 py-5"
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.99 }}
+              className="btn-secondary text-sm px-10 py-5 rounded-xl font-bold uppercase tracking-wider border border-white/10 bg-white/[0.03]"
             >
               Start Your Growth Journey
             </motion.a>
           </div>
 
-          {/* Trust badges — SVG icons, no emojis */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          {/* Glowing Trust Badges */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16">
             {badges.map((b, i) => (
-              <SpotlightCard
+              <motion.div
                 key={b.text}
-                glowColor={b.color === 'orange' ? 'rgba(249,115,22,0.18)' : 'rgba(37,99,235,0.18)'}
-                tiltStrength={8}
-                className="bg-white/80 border border-white rounded-xl p-5 flex items-center gap-4 backdrop-blur-sm"
-                style={{ boxShadow: '0 4px 20px rgba(15,23,42,0.08)' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
               >
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: b.color === 'orange'
-                      ? 'linear-gradient(135deg,#ffedd5,#fed7aa)'
-                      : 'linear-gradient(135deg,#dbeafe,#bfdbfe)',
-                  }}
+                <SpotlightCard
+                  glowColor={b.color === 'orange' ? 'rgba(253,164,175,0.22)' : 'rgba(99,102,241,0.22)'}
+                  tiltStrength={10}
+                  className="bg-[#050713]/40 backdrop-blur-2xl border border-white/5 rounded-2xl p-6 flex items-center gap-5 hover:border-white/10 transition-all duration-300 shadow-[0_15px_35px_rgba(0,0,0,0.5)] h-full text-left"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke={b.color === 'orange' ? '#F97316' : '#2563EB'} strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={b.iconPath} />
-                  </svg>
-                </div>
-                <span className="text-sm font-semibold text-textBody leading-snug text-left">{b.text}</span>
-              </SpotlightCard>
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border border-white/5"
+                    style={{
+                      background: b.color === 'orange'
+                        ? 'linear-gradient(135deg, rgba(253,164,175,0.15), rgba(253,164,175,0.03))'
+                        : 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.03))',
+                    }}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke={b.color === 'orange' ? '#fda4af' : '#6366f1'} strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={b.iconPath} />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-sans font-light text-slate-300 leading-snug text-left">{b.text}</span>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </div>
+
         </motion.div>
       </div>
     </section>

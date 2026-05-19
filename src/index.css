@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,75 +6,114 @@
 
 @layer base {
   body {
-    @apply bg-white text-textMain antialiased font-sans overflow-x-hidden;
+    @apply bg-background text-textMain antialiased font-sans overflow-x-hidden;
     cursor: none;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(253, 164, 175, 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.04) 0%, transparent 60%);
+    background-attachment: fixed;
   }
+  
   a, button, [role="button"], .cursor-pointer {
     cursor: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight text-textMain;
+    font-family: 'Cormorant Garamond', 'Space Grotesk', serif;
   }
 }
 
 @layer components {
-  /* ── Brand Gradient Button ── */
+  /* ── Premium Cinematic Glassmorphism Panel ── */
+  .glass-panel {
+    @apply bg-surface/50 backdrop-blur-2xl border border-white/10 rounded-[2rem] relative overflow-hidden transition-all duration-700;
+    box-shadow: 
+      0 30px 70px rgba(0, 0, 0, 0.65), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  }
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── Brand Gradient Button with Glowing Core ── */
   .btn-primary {
-    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white overflow-hidden transition-all duration-300;
-    background: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
-    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.30);
+    @apply relative inline-flex items-center justify-center px-9 py-4 rounded-xl font-black text-white overflow-hidden transition-all duration-500 tracking-wide;
+    background: linear-gradient(135deg, #6366f1 0%, #fda4af 100%);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.35);
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .btn-primary:hover::before {
+    transform: translateX(100%);
   }
   .btn-primary:hover {
-    @apply scale-[1.03];
-    box-shadow: 0 8px 40px rgba(37, 99, 235, 0.40);
+    @apply scale-[1.04] -translate-y-0.5;
+    box-shadow: 0 0 45px rgba(99, 102, 241, 0.55), 0 0 20px rgba(253, 164, 175, 0.3);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold bg-white border-2 border-gray-200 transition-all duration-300;
-    color: #0F172A;
+    @apply inline-flex items-center justify-center px-9 py-4 rounded-xl font-bold bg-surface/75 border border-white/10 transition-all duration-500 text-slate-200 tracking-wide;
+    backdrop-filter: blur(16px);
   }
   .btn-secondary:hover {
-    border-color: #2563EB;
-    color: #2563EB;
-    @apply scale-[1.02];
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+    border-color: rgba(192, 132, 252, 0.5);
+    color: #F8FAFC;
+    @apply scale-[1.03] -translate-y-0.5;
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.25);
   }
 
-  /* ── Premium Card ── */
+  /* ── Premium Card Redesign ── */
   .premium-card {
-    @apply bg-white border border-gray-100 rounded-2xl relative overflow-hidden transition-all duration-500;
-    box-shadow: 0 2px 16px rgba(15, 23, 42, 0.06);
+    @apply bg-surface/40 border border-white/5 rounded-2xl relative overflow-hidden transition-all duration-700;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
   }
   .premium-card:hover {
-    @apply -translate-y-2;
-    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.14);
-    border-color: rgba(37, 99, 235, 0.20);
+    @apply -translate-y-2 border-white/15;
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.6),
+      0 15px 45px rgba(99, 102, 241, 0.16);
   }
   .premium-card.orange:hover {
-    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.16);
-    border-color: rgba(249, 115, 22, 0.20);
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.6),
+      0 15px 45px rgba(253, 164, 175, 0.16);
   }
 
-  /* ── Section Label / Eyebrow ── */
+  /* ── Section Label / Eyebrow (Futuristic Neon Badge) ── */
   .eyebrow {
-    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold tracking-widest uppercase;
-    background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(249,115,22,0.08) 100%);
-    color: #2563EB;
-    border: 1px solid rgba(37,99,235,0.15);
+    @apply inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[10px] font-black tracking-widest uppercase font-sans;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(253, 164, 175, 0.08) 100%);
+    color: #fca5a5;
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.12);
   }
 
   /* ── Brand Gradient Text ── */
   .text-brand {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
+    background-image: linear-gradient(135deg, #6366f1 0%, #fda4af 100%);
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #2563EB 0%, #F97316 100%);
+    background-image: linear-gradient(135deg, #6366f1 0%, #fda4af 100%);
   }
   /* Extra scale utilities */
   .scale-115 { transform: scale(1.15); }
@@ -83,43 +122,57 @@
   .group:hover .group-hover\:scale-120 { transform: scale(1.20); }
   .duration-400 { transition-duration: 400ms; }
   .duration-600 { transition-duration: 600ms; }
+  
+  /* Luminous Glow Overlays */
+  .glow-spot-blue {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  }
+  .glow-spot-orange {
+    background: radial-gradient(circle, rgba(253, 164, 175, 0.16) 0%, transparent 70%);
+  }
+  .glow-spot-magenta {
+    background: radial-gradient(circle, rgba(219, 39, 119, 0.18) 0%, transparent 70%);
+  }
+  .glow-spot-lavender {
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.22) 0%, transparent 70%);
+  }
 }
 
-/* ── Floating animation ── */
+/* ── Smooth Floating Animations ── */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
-  50%       { transform: translateY(-18px) rotate(calc(var(--rotation, 0deg) + 1.5deg)); }
+  50%       { transform: translateY(-15px) rotate(calc(var(--rotation, 0deg) + 1deg)); }
 }
 .animate-float       { animation: float 6s   ease-in-out infinite; }
 .animate-float-delay { animation: float 6s   ease-in-out 1.5s infinite; }
 .animate-float-slow  { animation: float 8s   ease-in-out 0.7s infinite; }
 
-/* ── Shimmer for hero badge ── */
+/* ── Shimmering Text FX ── */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
 }
 .shimmer-text {
-  background: linear-gradient(90deg, #2563EB 0%, #F97316 50%, #2563EB 100%);
+  background: linear-gradient(90deg, #6366f1 0%, #fda4af 50%, #6366f1 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  animation: shimmer 5s linear infinite;
 }
 
-/* ── Scrollbar (light theme) ── */
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+/* ── Futuristic Dark Scrollbar ── */
+::-webkit-scrollbar       { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #020308; }
+::-webkit-scrollbar-thumb { background: #0f172a; border-radius: 99px; border: 2px solid #020308; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
-/* ── Lenis ── */
+/* ── Lenis Smooth Scrolling ── */
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-/* ── Section alternating backgrounds ── */
-.section-white  { @apply bg-white; }
-.section-slate  { background: #F8FAFC; }
+/* ── Inverted Section Alternating Backgrounds ── */
+.section-white  { @apply bg-transparent; }
+.section-slate  { @apply bg-transparent; }

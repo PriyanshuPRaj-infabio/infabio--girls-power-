@@ -16,6 +16,7 @@ function App() {
   return (
     <Layout>
       <Hero />
+      <WomenTeam />
       <BrandPositioning />
       <Difference />
       <Industries />
@@ -25,7 +26,6 @@ function App() {
       <Founders />
       <Results />
       <FounderMessage />
-      <WomenTeam />
       <FinalCTA />
     </Layout>
   );

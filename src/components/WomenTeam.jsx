@@ -7,10 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TEAM DATA — edit name, role, and photo for each person
-// HOW TO ADD A REAL PHOTO:
-//   1. Create folder:  /public/team/
-//   2. Drop image in:  /public/team/person1.jpg  (or .png / .webp)
-//   3. Change photo:   photo: '/team/person1.jpg'
 // ─────────────────────────────────────────────────────────────────────────────
 const profiles = [
   {
@@ -18,45 +14,45 @@ const profiles = [
     photo: '/team/chhavi.jpeg',
     name: 'Chhavi',
     role: 'Executive Assistant',
-    gradientFrom: '#2563EB',
-    gradientTo: '#60a5fa',
-    border: 'rgba(37,99,235,0.25)',
+    gradientFrom: '#6366f1',
+    gradientTo: '#818cf8',
+    border: 'rgba(99,102,241,0.25)',
   },
   {
     id: 2,
     photo: '/team/Mounica.png',
     name: 'Monika',
     role: 'HR',
-    gradientFrom: '#F97316',
-    gradientTo: '#fb923c',
-    border: 'rgba(249,115,22,0.25)',
+    gradientFrom: '#fda4af',
+    gradientTo: '#fec7d7',
+    border: 'rgba(253,164,175,0.25)',
   },
   {
     id: 3,
     photo: '/team/priyanka.png',
     name: 'Priyanka',
     role: 'Developer',
-    gradientFrom: '#7c3aed',
-    gradientTo: '#a78bfa',
-    border: 'rgba(124,58,237,0.25)',
+    gradientFrom: '#c084fc',
+    gradientTo: '#e9d5ff',
+    border: 'rgba(192,132,252,0.25)',
   },
   {
     id: 4,
     photo: '/team/Ayushi.png',
     name: 'Ayushi',
     role: 'Social Media Handler',
-    gradientFrom: '#059669',
-    gradientTo: '#34d399',
-    border: 'rgba(5,150,105,0.25)',
+    gradientFrom: '#818cf8',
+    gradientTo: '#a5b4fc',
+    border: 'rgba(129,140,248,0.25)',
   },
   {
     id: 5,
     photo: '/team/vanshika.png',
     name: 'Vanshika',
     role: 'Designer',
-    gradientFrom: '#be185d',
-    gradientTo: '#f472b6',
-    border: 'rgba(190,24,93,0.25)',
+    gradientFrom: '#db2777',
+    gradientTo: '#fda4af',
+    border: 'rgba(219,39,119,0.25)',
   },
 ];
 
@@ -99,30 +95,26 @@ function ProfileCard({ profile }) {
       {/* ── Full-height photo OR gradient placeholder ── */}
       <div className="absolute inset-0">
         {profile.photo ? (
-          // Real photo — swap photo: null → photo: '/team/personX.jpg'
           <img
             src={profile.photo}
             alt={profile.name}
             className="w-full h-full object-cover object-top"
           />
         ) : (
-          // Placeholder gradient shown until real photo is provided
           <div
             className="w-full h-full relative flex flex-col items-center justify-center"
             style={{ background: `linear-gradient(160deg, ${profile.gradientFrom} 0%, ${profile.gradientTo} 100%)` }}
           >
-            {/* Decorative concentric rings */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="w-44 h-44 rounded-full border-2 border-white/15 absolute" />
               <div className="w-64 h-64 rounded-full border border-white/08 absolute" />
             </div>
-            {/* SVG person silhouette */}
             <div className="w-32 h-32 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center shadow-2xl relative z-10">
               <svg className="w-16 h-16 text-white/70" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <p className="text-white/50 text-xs font-medium tracking-widest uppercase mt-5 relative z-10">
+            <p className="text-white/50 text-xs font-sans font-light tracking-widest uppercase mt-5 relative z-10">
               Photo coming soon
             </p>
           </div>
@@ -136,16 +128,16 @@ function ProfileCard({ profile }) {
       />
 
       {/* ── Name + Role pinned to bottom ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 px-6 pb-7">
+      <div className="absolute bottom-0 left-0 right-0 z-20 px-6 pb-7 text-left">
         {/* Coloured accent line above name */}
         <div
           className="h-[3px] w-10 rounded-full mb-3"
           style={{ background: `linear-gradient(90deg, ${profile.gradientFrom}, ${profile.gradientTo})` }}
         />
-        <h3 className="text-xl font-display font-black text-white leading-tight tracking-tight">
+        <h3 className="text-xl font-display font-light text-white leading-tight tracking-tight">
           {profile.name}
         </h3>
-        <p className="text-sm font-semibold mt-1.5" style={{ color: profile.gradientTo }}>
+        <p className="text-xs font-sans font-light mt-1.5" style={{ color: profile.gradientTo }}>
           {profile.role}
         </p>
       </div>
@@ -196,29 +188,28 @@ export default function WomenTeam() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white will-change-transform"
+      className="relative overflow-hidden bg-transparent will-change-transform"
       style={{ height: '100vh' }}
       id="team"
     >
       {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[600px] h-[400px] bg-blue-50/50 blur-[120px] rounded-full" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-orange-50/40 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-0 w-[600px] h-[400px] bg-indigo-950/15 blur-[130px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-pink-950/10 blur-[130px] rounded-full" />
       </div>
 
       {/* Fixed heading */}
       <div
-        className="absolute top-0 left-0 right-0 z-20 pt-10 pb-5"
-        style={{ background: 'linear-gradient(to bottom, white 70%, rgba(255,255,255,0) 100%)' }}
+        className="absolute top-0 left-0 right-0 z-20 pt-10 pb-5 bg-transparent"
       >
-        <div className="container mx-auto flex items-end justify-between">
-          <div>
+        <div className="container mx-auto flex items-end justify-between px-6">
+          <div className="text-left">
             <span className="eyebrow mb-3 inline-block">Meet The Team</span>
-            <h2 className="text-4xl md:text-5xl font-display font-black text-textMain mt-2 leading-tight">
-              Women Excelling at <span className="text-brand">Infabio</span>
+            <h2 className="text-5xl md:text-[3.5rem] font-display font-light text-white mt-2 leading-tight">
+              Women Excelling at <span className="text-transparent bg-clip-text bg-brand-gradient pr-4 italic font-normal">Infabio</span>
             </h2>
           </div>
-          <div className="hidden md:flex items-center gap-3 pb-2 text-textMuted text-sm font-semibold">
+          <div className="hidden md:flex items-center gap-3 pb-2 text-slate-400 text-sm font-sans font-light">
             <motion.div
               animate={{ x: [0, 10, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
@@ -229,10 +220,10 @@ export default function WomenTeam() {
             <span>Scroll to meet them</span>
           </div>
         </div>
-        <div className="container mx-auto mt-4">
-          <div className="h-px bg-gray-100 relative overflow-hidden rounded-full">
+        <div className="container mx-auto mt-4 px-6">
+          <div className="h-px bg-white/5 relative overflow-hidden rounded-full">
             <div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-brandBlue to-brandOrange rounded-full"
+              className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#6366f1] to-[#fda4af] rounded-full"
               style={{ width: '40%', animation: 'shimmer 2s ease-in-out infinite' }}
             />
           </div>
@@ -255,26 +246,26 @@ export default function WomenTeam() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05 }}
-          className="w-[260px] h-[420px] flex-shrink-0 rounded-3xl flex flex-col items-center justify-center text-center p-8 cursor-pointer"
+          className="w-[260px] h-[420px] flex-shrink-0 rounded-3xl flex flex-col items-center justify-center text-center p-8 cursor-pointer border border-white/5 group relative overflow-hidden"
           style={{
-            background: 'linear-gradient(160deg, #2563EB 0%, #F97316 100%)',
-            boxShadow: '0 20px 60px rgba(37,99,235,0.30)',
+            background: 'linear-gradient(160deg, #6366f1 0%, #fda4af 100%)',
+            boxShadow: '0 20px 60px rgba(99,102,241,0.25)',
           }}
         >
-          <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center mb-6 shadow-lg">
+          <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 shadow-lg transition-transform duration-500 group-hover:scale-105">
             <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
-          <h3 className="text-2xl font-display font-black text-white mb-3 leading-snug">
+          <h3 className="text-2xl font-display font-light text-white mb-3 leading-snug">
             Could be you!
           </h3>
-          <p className="text-white/80 text-sm leading-relaxed mb-8">
+          <p className="text-slate-100 text-sm leading-relaxed mb-8 font-sans font-light">
             We're always looking for passionate women to join our growth team.
           </p>
           <a
             href="#contact"
-            className="bg-white text-brandBlue font-black px-7 py-3 rounded-xl text-sm hover:scale-105 transition-transform shadow-lg"
+            className="bg-white text-indigo-950 font-bold px-7 py-3 rounded-xl text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)]"
           >
             Join Infabio →
           </a>

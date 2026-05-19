@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import SpotlightCard from './SpotlightCard';
 
 // SVG icon paths — no emojis
@@ -55,92 +56,140 @@ const industries = [
 ];
 
 export default function Industries() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  
+  // Parallax transitions for columns
+  const leftColumnY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const rightColumnY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+
+  // Divide industries into two balanced columns
+  const leftIndustries = industries.filter((_, i) => i % 2 === 0);
+  const rightIndustries = industries.filter((_, i) => i % 2 !== 0);
+
   return (
-    <section className="section-slate py-28 relative overflow-hidden" id="industries">
-      <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-blue-50/80 blur-[100px] pointer-events-none" />
+    <section ref={sectionRef} className="section-slate py-32 relative overflow-hidden" id="industries">
+      {/* Background ambient atmospheres */}
+      <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-950/10 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-15%] w-[450px] h-[450px] rounded-full bg-orange-950/5 blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="eyebrow mb-5 inline-block">Who We Work With</span>
-          <h2 className="text-4xl md:text-6xl font-display font-black text-textMain mt-4 mb-8 leading-tight">
-            Open to all brands.{' '}
-            <span className="text-brand">Especially built</span> for founders who want smarter growth.
-          </h2>
-
-          {/* Intro card — clean, no icon */}
-          <SpotlightCard
-            glowColor="rgba(37,99,235,0.15)"
-            tiltStrength={6}
-            className="bg-white border border-gray-100 rounded-2xl p-8 text-left mx-auto relative overflow-hidden"
-            style={{ boxShadow: '0 4px 24px rgba(15,23,42,0.06)' }}
-          >
-            {/* Orange left accent bar */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brandBlue to-brandOrange rounded-l-2xl" />
-            <p className="pl-6 text-textBody text-lg leading-relaxed">
-              We prioritise <strong className="text-textMain">women entrepreneurs</strong> building bold ideas with limited resources — because we understand the value of every rupee invested.
-            </p>
-          </SpotlightCard>
+        
+        {/* Dynamic Editorial Split Intro Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+          <div className="lg:col-span-7 space-y-4">
+            <span className="eyebrow inline-block">Who We Work With</span>
+            <h2 className="text-4xl md:text-6xl font-display font-black text-white leading-[1.08] tracking-tight">
+              Open to all brands. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue to-brandOrange animate-glow-pulse bg-[length:200%_auto]">
+                Especially built
+              </span> for founders who want smarter growth.
+            </h2>
+          </div>
+          <div className="lg:col-span-5 relative">
+            <SpotlightCard
+              glowColor="rgba(59,130,246,0.18)"
+              tiltStrength={6}
+              className="bg-[#090D16]/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-left relative overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.4)]"
+            >
+              {/* Orange left accent bar */}
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brandBlue to-brandOrange rounded-l-2xl" />
+              <p className="pl-4 text-slate-300 text-base leading-relaxed">
+                We prioritise <strong className="text-white">women entrepreneurs</strong> building bold ideas with limited resources — because we understand the value of every rupee invested.
+              </p>
+            </SpotlightCard>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {industries.map((ind, i) => {
-            const isSpecial = ind.highlight;
-            const iconColor = isSpecial ? '#F97316' : ind.color === 'orange' ? '#F97316' : '#2563EB';
-            const iconBg    = isSpecial ? 'linear-gradient(135deg, #ffedd5, #fed7aa)'
-              : ind.color === 'orange'  ? 'linear-gradient(135deg, #ffedd5, #fed7aa)'
-              : 'linear-gradient(135deg, #dbeafe, #bfdbfe)';
-            const glowColor = isSpecial
-              ? 'rgba(249,115,22,0.22)'
-              : ind.color === 'orange' ? 'rgba(249,115,22,0.18)' : 'rgba(37,99,235,0.18)';
+        {/* Dual-Track Splitting Parallax Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+          
+          {/* LEFT COLUMN: Slides UP */}
+          <motion.div style={{ y: leftColumnY }} className="space-y-8 lg:space-y-12">
+            {leftIndustries.map((ind, i) => {
+              const iconColor = '#3b82f6';
+              const iconBg = 'linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.03))';
+              const glowColor = 'rgba(59,130,246,0.18)';
 
-            return (
-              <SpotlightCard
-                key={ind.name}
-                glowColor={glowColor}
-                tiltStrength={14}
-                className={`bg-white rounded-2xl p-6 flex flex-col gap-3 cursor-default group ${isSpecial ? 'border border-orange-200' : 'border border-gray-100'}`}
-                style={{ boxShadow: isSpecial ? '0 4px 24px rgba(249,115,22,0.10)' : '0 2px 12px rgba(15,23,42,0.06)' }}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.07 }}
-                  className="flex flex-col gap-3"
+              return (
+                <SpotlightCard
+                  key={ind.name}
+                  glowColor={glowColor}
+                  tiltStrength={12}
+                  className="bg-[#090D16]/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col gap-4 cursor-default group transition-all duration-300 hover:border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                 >
-                  {/* Icon box */}
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: iconBg }}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke={iconColor} strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d={ind.iconPath} />
-                    </svg>
+                  <div className="flex flex-col gap-4">
+                    {/* Icon box */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-white/5"
+                      style={{ background: iconBg }}
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke={iconColor} strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d={ind.iconPath} />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display font-black text-lg md:text-xl text-white tracking-wide">
+                        {ind.name}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed mt-2">{ind.desc}</p>
+                    </div>
+
+                    <div className="h-[2px] w-0 group-hover:w-full transition-all duration-500 rounded-full bg-brandBlue shadow-[0_0_8px_#3b82f6]" />
                   </div>
+                </SpotlightCard>
+              );
+            })}
+          </motion.div>
 
-                  {/* Name */}
-                  <h3 className={`font-display font-bold text-base leading-snug ${isSpecial ? 'text-brandOrange' : 'text-textMain'}`}>
-                    {ind.name}
-                  </h3>
+          {/* RIGHT COLUMN: Slides DOWN */}
+          <motion.div style={{ y: rightColumnY }} className="space-y-8 lg:space-y-12 md:mt-16">
+            {rightIndustries.map((ind, i) => {
+              const isSpecial = ind.highlight;
+              const iconColor = isSpecial ? '#f97316' : '#f97316';
+              const iconBg = isSpecial ? 'linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.03))' : 'linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.03))';
+              const glowColor = isSpecial ? 'rgba(249,115,22,0.25)' : 'rgba(249,115,22,0.18)';
 
-                  {/* Short desc */}
-                  <p className="text-textMuted text-xs leading-snug">{ind.desc}</p>
+              return (
+                <SpotlightCard
+                  key={ind.name}
+                  glowColor={glowColor}
+                  tiltStrength={12}
+                  className={`bg-[#090D16]/50 backdrop-blur-xl rounded-3xl p-8 flex flex-col gap-4 cursor-default group transition-all duration-300 hover:border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.35)] ${
+                    isSpecial ? 'border-2 border-orange-500/40 shadow-[0_15px_40px_rgba(249,115,22,0.18)]' : 'border border-white/10'
+                  }`}
+                >
+                  <div className="flex flex-col gap-4">
+                    {/* Icon box */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-white/5"
+                      style={{ background: iconBg }}
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke={iconColor} strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d={ind.iconPath} />
+                      </svg>
+                    </div>
 
-                  {/* Special badge */}
-                  {isSpecial && (
-                    <span className="text-xs font-bold text-brandOrange bg-orange-50 border border-orange-200 px-2 py-0.5 rounded-full inline-block w-fit">
-                      Featured
-                    </span>
-                  )}
+                    <div>
+                      <h3 className={`font-display font-black text-lg md:text-xl tracking-wide ${isSpecial ? 'text-brandOrange' : 'text-white'}`}>
+                        {ind.name}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed mt-2">{ind.desc}</p>
+                    </div>
 
-                  {/* Hover underline */}
-                  {!isSpecial && (
-                    <div className={`h-[2px] w-0 group-hover:w-full transition-all duration-500 rounded-full ${ind.color === 'orange' ? 'bg-brandOrange' : 'bg-brandBlue'}`} />
-                  )}
-                </motion.div>
-              </SpotlightCard>
-            );
-          })}
+                    {isSpecial ? (
+                      <span className="text-xs font-bold text-brandOrange bg-orange-950/40 border border-orange-900/40 px-3 py-1 rounded-full inline-block w-fit shadow-[0_0_10px_rgba(249,115,22,0.15)] mt-1">
+                        Featured Target
+                      </span>
+                    ) : (
+                      <div className="h-[2px] w-0 group-hover:w-full transition-all duration-500 rounded-full bg-brandOrange shadow-[0_0_8px_#f97316]" />
+                    )}
+                  </div>
+                </SpotlightCard>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </section>

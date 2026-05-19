@@ -43,23 +43,42 @@ export default function CustomCursor() {
   }, []);
 
   const dotSize  = state === 'click' ? 6  : state === 'hover' ? 10 : 8;
-  const ringSize = state === 'click' ? 28 : state === 'hover' ? 52 : 36;
-  const ringBorder = state === 'hover' ? '2px solid #2563EB' : '1.5px solid rgba(37,99,235,0.45)';
+  const ringSize = state === 'click' ? 24 : state === 'hover' ? 56 : 38;
+  const ringBorder = state === 'hover' ? '2px solid #fda4af' : '1.5px solid rgba(192, 132, 252, 0.5)';
+  const glowShadow = state === 'hover' 
+    ? '0 0 15px rgba(253, 164, 175, 0.6)' 
+    : '0 0 12px rgba(192, 132, 252, 0.3)';
 
   return (
     <>
       {/* Dot */}
       <motion.div
         style={{ x: dotX, y: dotY, translateX: '-50%', translateY: '-50%' }}
-        animate={{ width: dotSize, height: dotSize, backgroundColor: state === 'hover' ? '#F97316' : '#2563EB' }}
+        animate={{ 
+          width: dotSize, 
+          height: dotSize, 
+          backgroundColor: state === 'hover' ? '#fda4af' : '#6366f1',
+          boxShadow: state === 'hover' ? '0 0 12px #fda4af' : '0 0 8px #6366f1'
+        }}
         transition={{ duration: 0.15 }}
         className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
       />
       {/* Ring */}
       <motion.div
-        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%', border: ringBorder }}
-        animate={{ width: ringSize, height: ringSize, opacity: state === 'click' ? 0.5 : 1 }}
-        transition={{ duration: 0.2 }}
+        style={{ 
+          x: ringX, 
+          y: ringY, 
+          translateX: '-50%', 
+          translateY: '-50%', 
+          border: ringBorder,
+          boxShadow: glowShadow
+        }}
+        animate={{ 
+          width: ringSize, 
+          height: ringSize, 
+          opacity: state === 'click' ? 0.3 : 1 
+        }}
+        transition={{ duration: 0.18 }}
         className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998]"
       />
     </>

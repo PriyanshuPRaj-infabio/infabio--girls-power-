@@ -11,26 +11,35 @@ export default {
     },
     extend: {
       colors: {
-        // Official Infabio Brand Colors
-        background: '#FFFFFF',
-        surface: '#F8FAFC',
-        textMain: '#0F172A',       // slate-900 — headings
-        textBody: '#374151',       // gray-700 — body copy
-        textMuted: '#6B7280',      // gray-500 — secondary text
+        // Premium Dark Theme Palette — Redesigned for Cyber-Feminine luxury
+        background: '#020308',     // Deep midnight navy background
+        surface: '#050713',        // Midnight navy panel
+        surfaceElevated: '#0a0d20',// Elevated midnight panel
+        textMain: '#F8FAFC',       // Slate-50 headings
+        textBody: '#CBD5E1',       // Slate-300 body text
+        textMuted: '#94A3B8',      // Slate-400 subtitle grey
+        
         // Brand Accent Colors
-        brandBlue: '#2563EB',      // blue-600 — primary accent
-        brandOrange: '#F97316',    // orange-500 — secondary accent
-        // Legacy names kept for compatibility
-        accentCyan: '#2563EB',
-        accentPurple: '#2563EB',
-        accentPeach: '#F97316',
+        brandBlue: '#6366f1',      // Premium electric indigo
+        brandOrange: '#fda4af',    // Premium rose gold
+        accentCyan: '#c084fc',     // Neon lavender
+        accentPurple: '#db2777',   // Soft magenta
+        accentPeach: '#fed7aa',    // Subtle peach glow
+        
+        // Explicit color system names
+        navyDeep: '#020308',
+        electricIndigo: '#6366f1',
+        neonLavender: '#c084fc',
+        roseGold: '#fda4af',
+        softMagenta: '#db2777',
+        peachGradient: '#fed7aa',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        display: ['Cormorant Garamond', 'Space Grotesk', 'sans-serif'],
       },
       animation: {
-        'spin-slow': 'spin 8s linear infinite',
+        'spin-slow': 'spin 24s linear infinite',
         'float': 'float 6s ease-in-out infinite',
         'float-delayed': 'float 6s ease-in-out 1.5s infinite',
         'float-slow': 'float 8s ease-in-out 0.5s infinite',
@@ -48,16 +57,18 @@ export default {
         },
       },
       backgroundImage: {
-        'brand-gradient': 'linear-gradient(135deg, #2563EB 0%, #F97316 100%)',
-        'brand-gradient-soft': 'linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(249,115,22,0.08) 100%)',
-        'hero-glow': 'radial-gradient(ellipse at 30% 40%, rgba(37,99,235,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(249,115,22,0.10) 0%, transparent 60%)',
+        'brand-gradient': 'linear-gradient(135deg, #6366f1 0%, #fda4af 100%)',
+        'brand-gradient-soft': 'linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(253,164,175,0.15) 100%)',
+        'hero-glow': 'radial-gradient(ellipse at 30% 40%, rgba(99,102,241,0.16) 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(253,164,175,0.14) 0%, transparent 60%)',
       },
       boxShadow: {
-        'brand': '0 4px 24px rgba(37, 99, 235, 0.15)',
-        'brand-orange': '0 4px 24px rgba(249, 115, 22, 0.15)',
-        'card': '0 2px 16px rgba(15, 23, 42, 0.06)',
-        'card-hover': '0 20px 60px rgba(37, 99, 235, 0.18)',
-        'card-hover-orange': '0 20px 60px rgba(249, 115, 22, 0.18)',
+        'brand': '0 0 35px rgba(99, 102, 241, 0.28)',
+        'brand-orange': '0 0 35px rgba(253, 164, 175, 0.28)',
+        'glow-cyan': '0 0 25px rgba(192, 132, 252, 0.25)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
+        'glass-hover': '0 12px 40px 0 rgba(99, 102, 241, 0.2)',
+        'glass-hover-orange': '0 12px 40px 0 rgba(253, 164, 175, 0.2)',
+        'card': '0 4px 20px rgba(0, 0, 0, 0.4)',
       },
     },
   },
