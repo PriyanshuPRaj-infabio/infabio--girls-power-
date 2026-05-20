@@ -11,14 +11,28 @@ export default {
     },
     extend: {
       colors: {
-        // Premium Dark Theme Palette — Redesigned for Cyber-Feminine luxury
-        background: '#020308',     // Deep midnight navy background
-        surface: '#050713',        // Midnight navy panel
-        surfaceElevated: '#0a0d20',// Elevated midnight panel
-        textMain: '#F8FAFC',       // Slate-50 headings
-        textBody: '#CBD5E1',       // Slate-300 body text
-        textMuted: '#94A3B8',      // Slate-400 subtitle grey
+        // Theme variables mapping
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+        surfaceElevated: 'var(--color-surface-elevated)',
+        textMain: 'var(--color-text-main)',
+        textBody: 'var(--color-text-body)',
+        textMuted: 'var(--color-text-muted)',
         
+        // Dynamic slate palette mapping to automatically update all slate utility text and border classes
+        slate: {
+          50: 'var(--color-slate-50)',
+          100: 'var(--color-slate-100)',
+          200: 'var(--color-slate-200)',
+          300: 'var(--color-slate-300)',
+          400: 'var(--color-slate-400)',
+          500: 'var(--color-slate-500)',
+          600: 'var(--color-slate-600)',
+          700: 'var(--color-slate-700)',
+          800: 'var(--color-slate-800)',
+          900: 'var(--color-slate-900)',
+        },
+
         // Brand Accent Colors
         brandBlue: '#6366f1',      // Premium electric indigo
         brandOrange: '#fda4af',    // Premium rose gold

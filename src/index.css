@@ -4,14 +4,94 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Dark Mode Variables (Default) */
+  --color-background: #020308;
+  --color-surface: #050713;
+  --color-surface-elevated: #0a0d20;
+  --color-text-main: #F8FAFC;
+  --color-text-body: #CBD5E1;
+  --color-text-muted: #94A3B8;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-border-glow: rgba(99, 102, 241, 0.25);
+  
+  --glass-bg: rgba(5, 7, 19, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  --glass-shadow-large: 0 30px 70px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  
+  --body-bg-gradient-1: rgba(99, 102, 241, 0.08);
+  --body-bg-gradient-2: rgba(253, 164, 175, 0.06);
+  --body-bg-gradient-3: rgba(192, 132, 252, 0.04);
+
+  --card-shadow-hover: 0 25px 60px rgba(0, 0, 0, 0.6), 0 15px 45px rgba(99, 102, 241, 0.16);
+  --card-shadow-hover-orange: 0 25px 60px rgba(0, 0, 0, 0.6), 0 15px 45px rgba(253, 164, 175, 0.16);
+  --btn-secondary-bg: rgba(5, 7, 19, 0.75);
+  --btn-secondary-color: #CBD5E1;
+
+  /* Custom Slate Variable Mapping */
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+}
+
+:root.light {
+  /* Light Mode Variables (Cyber-Feminine Luxury Pearl) */
+  --color-background: #F9FAFB;      /* Pearl white */
+  --color-surface: #FFFFFF;         /* Pure white */
+  --color-surface-elevated: #F3F4F6;/* Soft grey-white */
+  --color-text-main: #0B0F19;       /* Deep obsidian navy */
+  --color-text-body: #475569;       /* Dark slate body text */
+  --color-text-muted: #64748B;      /* Slate muted subtitle text */
+
+  --color-border: rgba(99, 102, 241, 0.08);
+  --color-border-hover: rgba(99, 102, 241, 0.18);
+  --color-border-glow: rgba(99, 102, 241, 0.12);
+
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(99, 102, 241, 0.12);
+  --glass-shadow: 0 16px 36px rgba(15, 23, 42, 0.05);
+  --glass-shadow-large: 0 24px 50px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+
+  --body-bg-gradient-1: rgba(99, 102, 241, 0.05);
+  --body-bg-gradient-2: rgba(253, 164, 175, 0.04);
+  --body-bg-gradient-3: rgba(192, 132, 252, 0.03);
+
+  --card-shadow-hover: 0 20px 40px rgba(99, 102, 241, 0.08), 0 10px 20px rgba(99, 102, 241, 0.04);
+  --card-shadow-hover-orange: 0 20px 40px rgba(253, 164, 175, 0.08), 0 10px 20px rgba(253, 164, 175, 0.04);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.85);
+  --btn-secondary-color: #334155;
+
+  /* Custom Slate Variable Mapping for Light Mode */
+  --color-slate-50: #0B0F19;        /* obsidian headings */
+  --color-slate-100: #1E293B;       /* dark body text */
+  --color-slate-200: #334155;       /* dark body text */
+  --color-slate-300: #475569;       /* slate-600 text */
+  --color-slate-400: #64748B;       /* slate-500 text */
+  --color-slate-500: #94A3B8;       /* slate-400 text */
+  --color-slate-600: #CBD5E1;       /* light border/divider */
+  --color-slate-700: #E2E8F0;       /* light bg panel */
+  --color-slate-800: #F1F5F9;       /* light bg elevated */
+  --color-slate-900: #FFFFFF;       /* white background panels */
+}
+
 @layer base {
   body {
-    @apply bg-background text-textMain antialiased font-sans overflow-x-hidden;
+    @apply bg-background text-textMain antialiased font-sans overflow-x-hidden transition-colors duration-500;
     cursor: none;
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
-      radial-gradient(circle at 90% 80%, rgba(253, 164, 175, 0.06) 0%, transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.04) 0%, transparent 60%);
+      radial-gradient(circle at 10% 20%, var(--body-bg-gradient-1) 0%, transparent 45%),
+      radial-gradient(circle at 90% 80%, var(--body-bg-gradient-2) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, var(--body-bg-gradient-3) 0%, transparent 60%);
     background-attachment: fixed;
   }
   
@@ -20,7 +100,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-textMain;
+    @apply font-display tracking-tight text-textMain transition-colors duration-500;
     font-family: 'Cormorant Garamond', 'Space Grotesk', serif;
   }
 }
@@ -28,11 +108,10 @@
 @layer components {
   /* ── Premium Cinematic Glassmorphism Panel ── */
   .glass-panel {
-    @apply bg-surface/50 backdrop-blur-2xl border border-white/10 rounded-[2rem] relative overflow-hidden transition-all duration-700;
-    box-shadow: 
-      0 30px 70px rgba(0, 0, 0, 0.65), 
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow-large);
+    @apply backdrop-blur-2xl rounded-[2rem] relative overflow-hidden transition-all duration-700;
   }
   .glass-panel::before {
     content: '';
@@ -41,6 +120,9 @@
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%);
     pointer-events: none;
     z-index: 1;
+  }
+  :root.light .glass-panel::before {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03), transparent 60%);
   }
 
   /* ── Brand Gradient Button with Glowing Core ── */
@@ -66,32 +148,34 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-9 py-4 rounded-xl font-bold bg-surface/75 border border-white/10 transition-all duration-500 text-slate-200 tracking-wide;
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-color);
+    border: 1px solid var(--color-border);
+    @apply inline-flex items-center justify-center px-9 py-4 rounded-xl font-bold transition-all duration-500 tracking-wide;
     backdrop-filter: blur(16px);
   }
   .btn-secondary:hover {
     border-color: rgba(192, 132, 252, 0.5);
-    color: #F8FAFC;
+    color: var(--color-text-main);
     @apply scale-[1.03] -translate-y-0.5;
     box-shadow: 0 0 30px rgba(192, 132, 252, 0.25);
   }
 
   /* ── Premium Card Redesign ── */
   .premium-card {
-    @apply bg-surface/40 border border-white/5 rounded-2xl relative overflow-hidden transition-all duration-700;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    background-color: var(--glass-bg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--glass-shadow);
+    @apply rounded-2xl relative overflow-hidden transition-all duration-700;
     backdrop-filter: blur(12px);
   }
   .premium-card:hover {
-    @apply -translate-y-2 border-white/15;
-    box-shadow: 
-      0 25px 60px rgba(0, 0, 0, 0.6),
-      0 15px 45px rgba(99, 102, 241, 0.16);
+    @apply -translate-y-2;
+    border-color: var(--color-border-hover);
+    box-shadow: var(--card-shadow-hover);
   }
   .premium-card.orange:hover {
-    box-shadow: 
-      0 25px 60px rgba(0, 0, 0, 0.6),
-      0 15px 45px rgba(253, 164, 175, 0.16);
+    box-shadow: var(--card-shadow-hover-orange);
   }
 
   /* ── Section Label / Eyebrow (Futuristic Neon Badge) ── */
@@ -176,3 +260,192 @@ html.lenis { height: auto; }
 /* ── Inverted Section Alternating Backgrounds ── */
 .section-white  { @apply bg-transparent; }
 .section-slate  { @apply bg-transparent; }
+
+/* ── Universal Premium Light Mode Contrast Overrides ── */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: var(--color-text-main) !important;
+}
+.light .text-white:not(.btn-primary) {
+  color: var(--color-text-main) !important;
+}
+.light [class*="text-white/70"] {
+  color: rgba(11, 15, 25, 0.7) !important;
+}
+.light [class*="text-white/50"] {
+  color: rgba(11, 15, 25, 0.5) !important;
+}
+.light [class*="text-white/20"] {
+  color: rgba(11, 15, 25, 0.2) !important;
+}
+.light [class*="text-white/15"] {
+  color: rgba(99, 102, 241, 0.12) !important;
+}
+.light [class*="text-white/10"] {
+  color: rgba(11, 15, 25, 0.1) !important;
+}
+.light [class*="border-white/"] {
+  border-color: rgba(99, 102, 241, 0.08) !important;
+}
+.light [class*="divide-white/"] {
+  divide-color: rgba(99, 102, 241, 0.08) !important;
+}
+.light [class*="ring-white/"] {
+  --tw-ring-color: rgba(99, 102, 241, 0.08) !important;
+}
+
+/* ── Dynamic Accent Theme Mapping ── */
+.light .eyebrow {
+  color: #db2777 !important;
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(253, 164, 175, 0.12) 100%) !important;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.08) !important;
+}
+.light .text-brand,
+.light .text-gradient,
+.light [class*="bg-brand-gradient"] {
+  background-image: linear-gradient(135deg, #4f46e5 0%, #db2777 100%) !important;
+}
+.light [class*="text-[#fda4af]"] {
+  color: #db2777 !important;
+}
+.light [class*="text-[#c084fc]"] {
+  color: #7c3aed !important;
+}
+.light [class*="text-indigo-400"] {
+  color: #4f46e5 !important;
+}
+.light [class*="text-brandOrange"] {
+  color: #db2777 !important;
+}
+.light [class*="hover:text-brandOrange"]:hover {
+  color: #db2777 !important;
+}
+.light [class*="bg-indigo-950"],
+.light [class*="bg-pink-950"],
+.light [class*="bg-orange-950"] {
+  background-color: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+}
+.light .btn-secondary {
+  border-color: var(--color-border) !important;
+}
+.light .btn-secondary:hover {
+  border-color: var(--color-border-hover) !important;
+}
+
+/* ── Transparent Inline Styling Overrides ── */
+.light [style*="rgba(255, 255, 255, 0.05)"],
+.light [style*="rgba(255,255,255,0.05)"] {
+  border-color: var(--color-border) !important;
+}
+.light #brand-positioning [style*="rgba(5,7,19,0.7)"] {
+  background: var(--glass-bg) !important;
+  border-color: var(--color-border) !important;
+}
+.light [class*="[text-shadow:"] {
+  text-shadow: none !important;
+}
+
+/* ── SVG Light Theme Alignment ── */
+.light svg line[stroke="#ffffff"],
+.light svg line[stroke="white"],
+.light svg path[stroke="#ffffff"],
+.light svg path[stroke="white"] {
+  stroke: var(--color-text-main) !important;
+}
+.light svg circle[fill="#ffffff"],
+.light svg circle[fill="white"] {
+  fill: var(--color-text-main) !important;
+}
+
+/* ── Team Section Exclusions (Keeping Profile Cards Dark) ── */
+.light #team h3 {
+  color: #ffffff !important;
+}
+.light #team [class*="flex-shrink-0"] p {
+  color: #ffffff !important;
+}
+.light #team [class*="flex-shrink-0"] span {
+  color: #ffffff !important;
+}
+.light #team [class*="border-white/"] {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+.light #team [class*="border-white/"]:hover {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+.light #team [class*="ring-white/"] {
+  --tw-ring-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ── Footer Readability & Logo Inversion ── */
+.light footer {
+  background-color: var(--color-background) !important;
+  border-top: 1px solid var(--color-border) !important;
+}
+.light footer h4,
+.light footer p,
+.light footer span,
+.light footer a {
+  color: var(--color-text-body) !important;
+}
+.light footer h4 {
+  color: var(--color-text-main) !important;
+}
+.light footer a:hover {
+  color: var(--color-text-main) !important;
+}
+.light footer [class*="w-10 h-10 rounded-xl"] {
+  background-color: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-body) !important;
+}
+.light footer [class*="w-10 h-10 rounded-xl"]:hover {
+  background-color: var(--color-text-main) !important;
+  color: #ffffff !important;
+}
+.light footer img[src*="fabulous"],
+.light footer img[src*="gocommercially"] {
+  filter: invert(1) brightness(0.2);
+}
+
+/* ── Explicit Theme Variable Overrides ── */
+body, .bg-background {
+  background-color: var(--color-background) !important;
+}
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+.bg-surfaceElevated {
+  background-color: var(--color-surface-elevated) !important;
+}
+body, .text-textMain {
+  color: var(--color-text-main) !important;
+}
+.text-textBody {
+  color: var(--color-text-body) !important;
+}
+.text-textMuted {
+  color: var(--color-text-muted) !important;
+}
+
+/* ── Container Background Mappings for Light Mode ── */
+.light [class*="bg-[#050713]"],
+.light [class*="bg-[#090D16]"],
+.light [class*="bg-[#0a0d20]"] {
+  background-color: var(--glass-bg) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* ── Shadow adjustment for cards in light mode ── */
+.light [class*="shadow-[0_30px_70px_rgba(0,0,0,0.65)]"],
+.light [class*="shadow-[0_25px_50px_rgba(0,0,0,0.55)]"],
+.light [class*="shadow-[0_20px_50px_rgba(0,0,0,0.3)]"],
+.light [class*="shadow-[0_15px_35px_rgba(0,0,0,0.5)]"] {
+  box-shadow: var(--glass-shadow-large) !important;
+}

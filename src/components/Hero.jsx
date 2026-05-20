@@ -27,11 +27,11 @@ function HolographicFeminineArtwork() {
         <circle cx="250" cy="250" r="220" stroke="url(#femOrbit1)" strokeWidth="1" strokeDasharray="5 15" opacity="0.35" />
         <circle cx="250" cy="250" r="180" stroke="url(#femOrbit2)" strokeWidth="1.5" strokeDasharray="20 40" opacity="0.55" />
         <circle cx="250" cy="250" r="140" stroke="url(#femOrbit3)" strokeWidth="1" strokeDasharray="2 6" opacity="0.45" />
-        
+
         {/* Pulsing network vectors representing digital intelligence */}
         <path d="M 250,30 L 250,470 M 30,250 L 470,250" stroke="rgba(192, 132, 252, 0.15)" strokeWidth="1" />
         <path d="M 94.5,94.5 L 405.5,405.5 M 94.5,405.5 L 405.5,94.5" stroke="rgba(253, 164, 175, 0.12)" strokeWidth="1" />
-        
+
         {/* Elegant female silhouette contour line art overlay */}
         <g transform="translate(100, 80) scale(1.2)" className="animate-pulse" style={{ animationDuration: '6s' }}>
           <path
@@ -44,13 +44,13 @@ function HolographicFeminineArtwork() {
           {/* Intelligence spark chakra node */}
           <circle cx="95" cy="55" r="4.5" fill="#fda4af" />
           <circle cx="95" cy="55" r="11" stroke="#fda4af" strokeWidth="1" opacity="0.6" className="animate-ping" style={{ animationDuration: '3s' }} />
-          
+
           {/* Heart core node */}
           <circle cx="68" cy="115" r="4" fill="#c084fc" />
           {/* Base ambition node */}
           <circle cx="55" cy="155" r="3.5" fill="#6366f1" />
         </g>
-        
+
         {/* Orbiting telemetry nodes */}
         <g className="origin-center animate-spin" style={{ animationDuration: '35s' }}>
           <circle cx="250" cy="70" r="5" fill="#fda4af" />
@@ -58,7 +58,7 @@ function HolographicFeminineArtwork() {
           <circle cx="250" cy="430" r="6" fill="#6366f1" />
           <circle cx="430" cy="250" r="3.5" fill="#db2777" />
         </g>
-        
+
         {/* Gradients */}
         <defs>
           <linearGradient id="femLineGrad" x1="20" y1="20" x2="130" y2="180" gradientUnits="userSpaceOnUse">
@@ -144,7 +144,7 @@ function StatsDashboard() {
         }}
       >
         {/* Mouse spotlight overlay */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-300"
           style={{
             background: `radial-gradient(circle 200px at ${mousePos.x}px ${mousePos.y}px, rgba(192, 132, 252, 0.08), transparent 70%)`
@@ -165,7 +165,7 @@ function StatsDashboard() {
               className="rounded-2xl p-5 flex flex-col gap-3 bg-[#0a0d20]/50 border border-white/5 relative overflow-hidden group hover:border-white/15 transition-all duration-500"
             >
               {/* Soft interior glow dot */}
-              <div 
+              <div
                 className="absolute -top-10 -left-10 w-24 h-24 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                 style={{ backgroundColor: s.iconBg }}
               />
@@ -173,7 +173,7 @@ function StatsDashboard() {
               {/* Icon Sphere */}
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg relative z-10"
-                style={{ 
+                style={{
                   background: `linear-gradient(135deg, ${s.iconBg}20, ${s.iconBg}05)`,
                   border: `1px solid ${s.iconBg}30`,
                   boxShadow: `0 0 15px ${s.iconBg}20`
@@ -206,10 +206,10 @@ function StatsDashboard() {
 // ── Holographic Capital Protection Radar Grid ─────────────────────────────
 function HolographicRadar() {
   return (
-    <svg 
-      className="w-full h-full max-w-[600px] max-h-[600px]" 
+    <svg
+      className="w-full h-full max-w-[600px] max-h-[600px]"
       style={{ animation: 'spin 65s linear infinite' }}
-      viewBox="0 0 400 400" 
+      viewBox="0 0 400 400"
       fill="none"
     >
       {/* Sonar rings */}
@@ -217,13 +217,13 @@ function HolographicRadar() {
       <circle cx="200" cy="200" r="140" stroke="rgba(253,164,175,0.12)" strokeWidth="1.2" strokeDasharray="6 10" />
       <circle cx="200" cy="200" r="100" stroke="rgba(192,132,252,0.18)" strokeWidth="1" />
       <circle cx="200" cy="200" r="60" stroke="rgba(253,164,175,0.2)" strokeWidth="1.5" strokeDasharray="12 6" />
-      
+
       {/* Radar sweeping sonar beam */}
       <g className="origin-center animate-spin" style={{ animationDuration: '8s' }}>
         <line x1="200" y1="200" x2="200" y2="20" stroke="url(#radarSweep)" strokeWidth="2.5" strokeLinecap="round" />
         <polygon points="200,200 200,20 240,30" fill="url(#radarFade)" opacity="0.2" />
       </g>
-      
+
       {/* Reticle Crosshairs */}
       <line x1="20" y1="200" x2="380" y2="200" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
       <line x1="200" y1="20" x2="200" y2="380" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
@@ -314,7 +314,7 @@ export default function Hero() {
                   <svg className="w-3.5 h-3.5 text-brandBlue animate-pulse" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                   </svg>
-                  India's First Women-Powered Agency
+                  India's First All Women-Powered Agency
                 </span>
               </motion.div>
 
@@ -326,7 +326,7 @@ export default function Hero() {
               >
                 India's First <br />
                 <span className="italic font-normal text-transparent bg-clip-text bg-brand-gradient pr-4">
-                  Women-Powered
+                  All Women-Powered
                 </span><br />
                 Marketing Defence Agency
               </motion.h1>
@@ -390,7 +390,7 @@ export default function Hero() {
             <div className="lg:col-span-5 hidden lg:flex items-center justify-center relative">
               {/* High-tech glow backdrop */}
               <div className="absolute w-[120%] h-[120%] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none -z-10 animate-pulse" />
-              
+
               {/* Custom Female-Inspired Neural Holographic Artwork */}
               <HolographicFeminineArtwork />
 

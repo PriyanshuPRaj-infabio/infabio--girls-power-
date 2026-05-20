@@ -1,6 +1,7 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useTheme } from '../context/ThemeContext';
 
 // Global mouse tracker to share coordinates between DOM and WebGL thread
 const sharedMouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
@@ -24,6 +25,7 @@ function GridMesh() {
   const pointsRef = useRef(null);
   const geoRef = useRef(null);
   const { size } = useThree();
+  const { theme } = useTheme();
 
   const width = 45;
   const height = 45;
@@ -97,10 +99,10 @@ function GridMesh() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.13}
-        color="#c084fc"
+        size={theme === 'light' ? 0.22 : 0.13}
+        color={theme === 'light' ? '#7c3aed' : '#c084fc'}
         transparent
-        opacity={0.38}
+        opacity={theme === 'light' ? 0.6 : 0.38}
         sizeAttenuation={true}
       />
     </points>
@@ -111,6 +113,7 @@ function StarField() {
   const pointsRef = useRef(null);
   const orangeRef = useRef(null);
   const count = 300;
+  const { theme } = useTheme();
 
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -158,10 +161,10 @@ function StarField() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.17}
-          color="#6366f1"
+          size={theme === 'light' ? 0.24 : 0.17}
+          color={theme === 'light' ? '#4f46e5' : '#6366f1'}
           transparent
-          opacity={0.3}
+          opacity={theme === 'light' ? 0.55 : 0.3}
           sizeAttenuation={true}
         />
       </points>
@@ -174,10 +177,10 @@ function StarField() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.18}
-          color="#fda4af"
+          size={theme === 'light' ? 0.25 : 0.18}
+          color={theme === 'light' ? '#db2777' : '#fda4af'}
           transparent
-          opacity={0.32}
+          opacity={theme === 'light' ? 0.55 : 0.32}
           sizeAttenuation={true}
         />
       </points>
@@ -186,27 +189,35 @@ function StarField() {
 }
 
 export default function ThreeMeshBackground() {
+  const { theme } = useTheme();
+
   return (
     <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       {/* Underlying ambient background overlay */}
-      <div className="absolute inset-0 bg-[#020308]" />
+      <div className="absolute inset-0 bg-background transition-colors duration-500" />
       
       {/* WebGL Canvas fixed backdrop */}
-      <div className="absolute inset-0 w-full h-full opacity-70">
+      <div className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${theme === 'light' ? 'opacity-85' : 'opacity-70'}`}>
         <Canvas
           camera={{ position: [0, 0, 22], fov: 60 }}
           gl={{ antialias: true, alpha: true }}
         >
-          <ambientLight intensity={0.6} />
+          <ambientLight intensity={theme === 'light' ? 0.9 : 0.6} />
           <GridMesh />
           <StarField />
         </Canvas>
       </div>
 
       {/* Floating dynamic glow elements all over the site — redesigned for cyber-feminine luxury */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-indigo-950/15 blur-[140px] pointer-events-none" />
-      <div className="absolute top-[30%] right-[10%] w-[50%] h-[50%] rounded-full bg-purple-950/12 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-950/10 blur-[140px] pointer-events-none" />
+      <div className={`absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full blur-[140px] pointer-events-none transition-colors duration-700 ${
+        theme === 'light' ? 'bg-indigo-200/40' : 'bg-indigo-950/15'
+      }`} />
+      <div className={`absolute top-[30%] right-[10%] w-[50%] h-[50%] rounded-full blur-[140px] pointer-events-none transition-colors duration-700 ${
+        theme === 'light' ? 'bg-purple-200/30' : 'bg-purple-950/12'
+      }`} />
+      <div className={`absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[140px] pointer-events-none transition-colors duration-700 ${
+        theme === 'light' ? 'bg-pink-200/45' : 'bg-pink-950/10'
+      }`} />
     </div>
   );
 }

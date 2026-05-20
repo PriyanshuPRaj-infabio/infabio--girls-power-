@@ -11,8 +11,8 @@ const stats = [
 
 function AnimatedCounter({ target, suffix, color, inView }) {
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
-  const springValue = useSpring(rounded, { stiffness: 50, damping: 15 });
+  const springValue = useSpring(count, { stiffness: 50, damping: 15 });
+  const rounded = useTransform(springValue, (latest) => Math.round(latest));
   const [displayCount, setDisplayCount] = useState(0);
 
   useEffect(() => {
@@ -22,10 +22,10 @@ function AnimatedCounter({ target, suffix, color, inView }) {
   }, [inView, target, count]);
 
   useEffect(() => {
-    return springValue.onChange((latest) => {
+    return rounded.onChange((latest) => {
       setDisplayCount(latest);
     });
-  }, [springValue]);
+  }, [rounded]);
 
   return (
     <span className={`text-6xl md:text-7xl font-display font-light leading-none tracking-tight ${
